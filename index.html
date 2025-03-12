@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Data Table</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-6 px-4">
+  <div class="container mx-auto">
+    <div x-data="tableData()">
+      <input x-model="search" type="text" placeholder="Search..." class="mb-4 p-2 border border-gray-300 rounded">
+
+      <table class="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b cursor-pointer" @click="sort('name')">Name</th>
+            <th class="py-2 px-4 border-b cursor-pointer" @click="sort('age')">Age</th>
+            <th class="py-2 px-4 border-b cursor-pointer" @click="sort('city')">City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="row in filteredData" :key="row.id">
+            <tr>
+              <td class="py-2 px-4 border-b" x-text="row.name"></td>
+              <td class="py-2 px-4 border-b" x-text="row.age"></td>
+              <td class="py-2 px-4 border-b" x-text="row.city"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
